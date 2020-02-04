@@ -1,0 +1,9 @@
+App
+	Homepage                -> header main
+	Post Detail             -> header main
+	User page               -> header main footer
+	Post Upload             -> header main footer
+	profile                 -> header main footer
+	change password         -> header main footer
+	register                ->        main footer
+	login                   ->        main footer
