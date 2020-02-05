@@ -1,9 +1,9 @@
 <template>
-	<div class="ass1-section__item">
+	<div class="ass1-section__item" v-if="post">
 		<div class="ass1-section">
-			<post-item-header/>
-			<post-item-content/>
-			<post-item-footer/>
+			<post-item-header :post="post"/>
+			<post-item-content :post="post" />
+			<post-item-footer :post="post"/>
 		</div>
 	</div>
 </template>
@@ -15,7 +15,10 @@
 	
 	export default {
 		name: "post-item",
-		components: {PostItemFooter, PostItemContent, PostItemHeader}
+		components: {PostItemFooter, PostItemContent, PostItemHeader},
+		props: {
+			post: {type: Object, default: null}
+		}
 	}
 </script>
 

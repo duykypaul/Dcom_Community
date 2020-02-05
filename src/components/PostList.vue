@@ -1,9 +1,11 @@
 <template>
 	<div>
-		<post-item/>
-		<post-item/>
-		<post-item/>
-		<post-item/>
+		<post-item
+				v-for="item in getListPosts"
+				:key="item.PID"
+				:post="item"
+		/>
+		
 		<button class="load-more ass1-btn">
 			<span>Xem thêm</span>
 		</button>
@@ -11,10 +13,16 @@
 </template>
 
 <script>
+	import {mapGetters} from 'vuex';
 	import PostItem from "./PostItem";
 	export default {
 		name: "post-list",
-		components: {PostItem}
+		components: {PostItem},
+		computed: {
+			...mapGetters([
+				'getListPosts'
+			])
+		}
 	}
 </script>
 
