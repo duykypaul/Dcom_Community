@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import ModuleExample from './ModuleExample';
+import user from './ModuleUser';
+import post from './ModulePost';
 
 Vue.use(Vuex)
 
@@ -14,7 +15,8 @@ const store = new Vuex.Store({
 	
 	},
 	modules: {
-		ModuleExample
+		user,
+		post
 	}
 });
 export default store;
