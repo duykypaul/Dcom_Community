@@ -29,7 +29,6 @@
 			},
 			getImageAvatar(){
 				if(this.post.profilepicture) {
-					// console.log(typeof this.post.profilepicture);
 					// console.log(this.post.profilepicture);
 					// return this.post.profilepicture;
 					return 'https://avatars2.githubusercontent.com/u/37139777?s=460&v=4';

@@ -16,10 +16,26 @@
 <script>
 	import PostList from "../components/PostList";
 	import SideBar from "../components/SideBar";
-	
+	import {mapActions} from 'vuex';
 	export default {
 		name: "home-page",
-		components: {SideBar, PostList}
+		components: {SideBar, PostList},
+		watch: {
+			$route(to, from ){
+				let tagIndex = to.query.tagIndex;
+				if(tagIndex){
+					this.getListPostHasPaging({tagIndex});
+				} else {
+					this.getListPostHasPaging({});
+				}
+			}
+		},
+		methods: {
+			...mapActions([
+				'getListPostHasPaging',
+				'getListPostByCategory'
+			])
+		}
 	}
 </script>
 

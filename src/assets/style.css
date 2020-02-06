@@ -1470,7 +1470,7 @@ select.form-control:focus {
   object-fit: cover;
   position: absolute;
   top: 0;
-  left: 0;  
+  left: 0;
 }
 @media only screen and (min-width: 769px) {
   .ass1-head-user__image {
@@ -2269,7 +2269,7 @@ select.form-control:focus {
 .ass1-header__nav > .container ul li {
   text-align: center;
 }
-.ass1-header__nav > .container ul li:not(:first-child) {
+.ass1-header__nav > .container ul li {
   margin-top: 8px;
 }
 .ass1-header__nav > .container ul li a:hover {
