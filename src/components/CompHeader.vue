@@ -3,7 +3,7 @@
 		<div class="ass1-header">
 			<div class="container">
 				<router-link to="/" class="ass1-logo">
-					ZendVn Meme
+					Dcom Community
 				</router-link>
 				<header-navigation/>
 				<header-search />

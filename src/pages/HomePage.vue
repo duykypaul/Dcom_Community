@@ -23,18 +23,19 @@
 		watch: {
 			$route(to, from ){
 				let tagIndex = to.query.tagIndex;
-				if(tagIndex){
-					this.getListPostHasPaging({tagIndex});
-				} else {
-					this.getListPostHasPaging({});
-				}
+				
+				console.log(tagIndex);
+				this.getListPostHasPaging({tagIndex: tagIndex});
 			}
 		},
 		methods: {
 			...mapActions([
-				'getListPostHasPaging',
-				'getListPostByCategory'
+				'getListPostHasPaging'
 			])
+		},
+		created() {
+			let tagIndex = this.$route.query.tagIndex;
+			this.$store.dispatch('getListPostHasPaging', {tagIndex});
 		}
 	}
 </script>

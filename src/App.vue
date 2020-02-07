@@ -34,9 +34,6 @@
 				if(arrRoutes.indexOf(RouteName) !== -1) return false;
 				return true;
 			}
-		},
-		created() {
-			this.$store.dispatch('getListPostHasPaging', {});
 		}
 	}
 </script>
