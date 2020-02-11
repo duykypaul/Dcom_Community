@@ -1,7 +1,7 @@
 <template>
 	<div class="ass1-section__head" >
 		<router-link :to="getUserLink"  class="ass1-section__avatar ass1-avatar">
-			<img :src="getImageAvatar" alt="">
+			<img :src="getImageAvatar" alt="undefine">
 		</router-link>
 		<div>
 			<RouterLink :to="getUserLink" class="ass1-section__name">{{post.fullname}}</RouterLink>

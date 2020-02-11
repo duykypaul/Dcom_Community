@@ -11,7 +11,7 @@
 	import CompHeader from "./components/CompHeader";
 	import CompFooter from "./components/CompFooter";
 	import AppLoading from "./components/AppLoading";
-	import {mapState} from "vuex";
+	import {mapState, mapActions} from "vuex";
 	
 	export default {
 		name: 'app',
@@ -34,6 +34,14 @@
 				if(arrRoutes.indexOf(RouteName) !== -1) return false;
 				return true;
 			}
+		},
+		methods: {
+			...mapActions([
+				'checkLogin'
+			])
+		},
+		created(){
+			this.checkLogin();
 		}
 	}
 </script>

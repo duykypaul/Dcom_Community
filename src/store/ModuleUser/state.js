@@ -1,3 +1,6 @@
 export default {
-	users: {}
+	users: {},
+	currentUser: {},
+	ACCESS_TOKEN: null,
+	isLogin: false
 }
