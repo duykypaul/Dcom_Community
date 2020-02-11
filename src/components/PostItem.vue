@@ -4,6 +4,7 @@
 			<post-item-header :post="post"/>
 			<post-item-content :post="post" />
 			<post-item-footer :post="post"/>
+			<slot/>
 		</div>
 	</div>
 </template>
