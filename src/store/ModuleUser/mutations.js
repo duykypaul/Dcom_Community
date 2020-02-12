@@ -16,5 +16,8 @@ export default {
 		state.ACCESS_TOKEN = null;
 		localStorage.removeItem('ACCESS_TOKEN');
 		state.isLogin = false;
-	}
+	},
+	SET_USER_POSTS(state, {posts, userId}) {
+		Vue.set(state.posts, userId, posts);
+	},
 }

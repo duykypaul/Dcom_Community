@@ -20,7 +20,7 @@ export default {
 			}
 		}
 	},
-	async actionLogin({commit}, {email = '', password = ''}) {
+	async actionLogin({commit, dispatch}, {email = '', password = ''}) {
 		try {
 			let data = {
 				email, password
@@ -29,6 +29,7 @@ export default {
 			if (result.data && result.data.status === 200) {
 				commit('SET_USER_INFO', result.data.user);
 				commit('SET_LOGIN_INFO', result.data);
+				dispatch('getListPostByUserId', result.data.user.USERID);
 				return {
 					ok: true,
 					data: result.data,
@@ -51,19 +52,28 @@ export default {
 		try {
 			let tokenLocal = localStorage.getItem('ACCESS_TOKEN');
 			let userObj = parseJwt(tokenLocal);
-			if(userObj) {
-				let resultUser = await dispatch('getUserById', userObj.id);
-				let data = {
-					user: resultUser.data,
-					token: tokenLocal
-				};
-				commit('SET_LOGIN_INFO', data);
-				return {
-					ok: true,
-					error: null
+			if (userObj) {
+				// let resultUser = await dispatch('getUserById', userObj.id);
+				// console.log("resultUser: ", resultUser);
+				// let resultPosts = await dispatch('getListPostByUserId', userObj.id);
+				// console.log("resultPosts: ", resultPosts);
+				
+				let promiseUser = dispatch('getUserById', userObj.id);
+				let promisePosts = dispatch('getListPostByUserId', userObj.id);
+				let [resultUser, resultPosts] = await Promise.all([promiseUser, promisePosts]);
+				if (resultUser.ok && resultPosts.ok) {
+					let data = {
+						user: resultUser.data,
+						token: tokenLocal
+					};
+					commit('SET_LOGIN_INFO', data);
+					return {
+						ok: true,
+						error: null
+					}
 				}
 			} else {
-				return { ok: false }
+				return {ok: false}
 			}
 		} catch (error) {
 			return {
@@ -72,7 +82,37 @@ export default {
 			}
 		}
 	},
-	actionLogout({commit}){
+	actionLogout({commit}) {
 		commit('SET_LOG_OUT')
+	},
+	async getListPostByUserId({commit}, userid) {
+		try {
+			let config = {
+				params: {
+					userid
+				},
+				headers: {
+					'accept': 'application/json',
+					'Authorization': "Bearer " + localStorage.getItem("ACCESS_TOKEN")
+				}
+			};
+			let resultPosts = await axiosInstance.get("/post/getListPostUserID.php", config);
+			if (resultPosts.data && resultPosts.data.status === 200) {
+				let data = {
+					posts: resultPosts.data.posts,
+					userId: userid
+				};
+				commit('SET_USER_POSTS', data);
+				return {
+					ok: true,
+					data: resultPosts.data.posts
+				}
+			}
+		} catch (e) {
+			return {
+				ok: false,
+				error: e.message
+			}
+		}
 	}
 }
