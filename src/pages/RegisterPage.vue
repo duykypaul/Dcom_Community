@@ -2,7 +2,7 @@
 	<div class="ass1-login">
 		
 		<div class="ass1-login__logo">
-			<a href="index.html" class="ass1-logo">ZendVn Meme</a>
+			<router-link to="/" class="ass1-logo">DCOM Community</router-link>
 		</div>
 		<div class="ass1-login__content">
 			<p>Đăng ký một tài khoản</p>
@@ -13,7 +13,7 @@
 					<input type="password" class="form-control" placeholder="Mật khẩu" required="">
 					<input type="password" class="form-control" placeholder="Nhập lại mật khẩu" required="">
 					<div class="ass1-login__send">
-						<a href="dang-nhap.html">Đăng nhập</a>
+						<router-link to="/login">Đăng nhập</router-link>
 						<button type="submit" class="ass1-btn">Đăng ký</button>
 					</div>
 				</form>

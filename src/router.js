@@ -11,6 +11,8 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
 
+import {ifNotAuthenticated, ifAuthenticated} from './plugins/authenticate';
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -27,38 +29,43 @@ const routes = [
 	{
 		path: '/user/:id',
 		name: 'user-page',
-		component: UserPage
+		component: UserPage,
+		beforeEnter: ifAuthenticated
 	},
 	{
 		path: '/post-upload',
 		name: 'post-upload',
-		component: PostUpload
+		component: PostUpload,
+		beforeEnter: ifAuthenticated
 	},
 	{
 		path: '/user/:id/profile',
 		name: 'user-profile',
-		component: UserProfile
+		component: UserProfile,
+		beforeEnter: ifAuthenticated
 	},
 	{
 		path: '/user/:id/password',
 		name: 'change-password',
-		component: ChangePassword
+		component: ChangePassword,
+		beforeEnter: ifAuthenticated
 	},
 	{
 		path: '/register',
 		name: 'register',
-		component: RegisterPage
+		component: RegisterPage,
+		beforeEnter: ifNotAuthenticated
 	},
 	{
 		path: '/login',
 		name: 'login',
-		component: LoginPage
+		component: LoginPage,
+		beforeEnter: ifNotAuthenticated
 	},
 	{
 		path: '*',
 		component: NotFound
 	}
-	
 ]
 const router = new VueRouter({
 	mode: 'history',
