@@ -114,5 +114,45 @@ export default {
 				error: e.message
 			}
 		}
+	},
+	async actionRegister({commit, dispatch}, {fullname = '', email = '', password= '', repassword= ''}) {
+		commit('SET_LOADING', true);
+		try{
+			let data = {
+				fullname,
+				email,
+				password,
+				repassword
+			};
+			console.log(data);
+			let resultUser = await axiosInstance.post("/member/register.php", data);
+			commit('SET_LOADING', false);
+			if(resultUser.data.code === 200){
+				let data = {
+					user: resultUser.data.user,
+					token: resultUser.data.token
+				}
+				commit('SET_USER_INFO', data.user);
+				commit('SET_LOGIN_INFO', data);
+				
+				return {
+					ok: true,
+					data : resultUser.data
+				}
+			} else {
+				console.log("resultUser.data.error", resultUser.data.error);
+				return {
+					ok: false,
+					error: resultUser.data.error
+				}
+			}
+		} catch(error) {
+			commit('SET_LOADING', false);
+			console.log("error.message", error.message);
+			return {
+				ok: false,
+				error: error.message
+			}
+		}
 	}
 }
