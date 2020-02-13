@@ -2,6 +2,5 @@ export default {
 	users: {},
 	posts: {},
 	currentUser: {},
-	ACCESS_TOKEN: null,
-	isLogin: false
+	ACCESS_TOKEN: localStorage.getItem("ACCESS_TOKEN")
 }

@@ -18,6 +18,7 @@ let ifAuthenticated = (to, from, next) => {
 	if(store.getters.getIsLogin) {
 		next();
 	} else {
+		console.log(store.getters.getIsLogin);
 		next({
 			name: 'login',
 			query: {

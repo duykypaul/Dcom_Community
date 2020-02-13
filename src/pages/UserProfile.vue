@@ -5,7 +5,7 @@
 			
 			<div class="ass1-login__form">
 				<div class="avatar">
-					<img src="https://bodiezpro.com/wp-content/uploads/2015/09/medium-default-avatar.png" alt="">
+					<img src="/dist/images/cat-1634369_1920.jpg" alt="">
 				</div>
 				<form action="#">
 					<input type="text" class="form-control" placeholder="Tên ..." required="">

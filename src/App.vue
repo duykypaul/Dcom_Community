@@ -41,7 +41,6 @@
 			])
 		},
 		created(){
-			console.log("created app");
 			this.checkLogin();
 		}
 	}
