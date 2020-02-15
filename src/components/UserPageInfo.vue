@@ -58,9 +58,9 @@
 				'getCurrentUser'
 			]),
 			getAvatar() {
-				// if(this.user.profilepicture){
-				// 	return this.user.profilepicture;
-				// }
+				if(this.user.profilepicture){
+					return this.user.profilepicture;
+				}
 				return '/dist/images/cat-1634369_1920.jpg';
 			},
 			isCurrentUser() {

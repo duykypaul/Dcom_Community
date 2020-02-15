@@ -7,26 +7,26 @@
 				<div class="avatar">
 					<img :src="getAvatar" alt="">
 				</div>
-				<form @submit.prevent="handleSubmit" action="#" v-if="getCurrentUser">
+				<form @submit.prevent="handleEditProfile" action="#" v-if="getCurrentUser">
 					<input
 						:value="getCurrentUser.fullname"
-						@input="fullName = $event.target.value"
+						v-on:input="fullName = $event.target.value"
 						class="form-control" placeholder="Tên ..." required="" type="text">
 					
 					<select
 						:value="getCurrentUser.gender"
-						@change="gender = $event.target.value"
+						v-on:change="gender = $event.target.value"
 						class="form-control"
 					>
 						<option disabled value="">Giới tính</option>
 						<option value="nam">Nam</option>
 						<option value="nu">Nữ</option>
 					</select>
-					<input @change="uploadAvatar" class="form-control" name="avatar" placeholder="Ảnh đại diện"
+					<input v-on:change="uploadAvatar" class="form-control" name="avatar" placeholder="Ảnh đại diện"
 					       type="file">
 					<textarea
 						:value="getCurrentUser.description"
-						@change="description = $event.target.value"
+						v-on:input="description = $event.target.value"
 						class="form-control" cols="30" placeholder="Mô tả ngắn ..." rows="5">
 
 					</textarea>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-	import {mapGetters} from 'vuex';
+	import {mapGetters, mapActions} from 'vuex';
 	
 	export default {
 		name: "user-profile",
@@ -71,11 +71,13 @@
 					return this.getCurrentUser.profilepicture;
 				}
 				return this.avatar.base64;
-				
 			}
 			
 		},
 		methods: {
+			...mapActions([
+				'updateProfile'
+			]),
 			checkCurrentUser() {
 				if (this.getCurrentUser.USERID && this.userId) {
 					if (this.userId != this.getCurrentUser.USERID) {
@@ -83,10 +85,30 @@
 					}
 				}
 			},
-			handleSubmit() {
-				console.log("fullName: ", this.fullName);
-				console.log("gender: ", this.gender);
-				console.log("description: ", this.description);
+			handleEditProfile() {
+				if(!this.gender) this.gender = this.getCurrentUser.gender;
+				if(!this.fullName) this.fullName = this.getCurrentUser.fullname;
+				if(!this.description) this.description = this.getCurrentUser.description;
+				
+				if(this.fullName && this.description && this.gender) {
+					let data = {
+						fullname: this.fullName,
+						description: this.description,
+						gender: this.gender
+					};
+					
+					if(this.avatar.objFile) {
+						data.objFile = this.avatar.objFile;
+					}
+					
+					this.updateProfile(data).then(res => {
+						if(res.ok) {
+							alert('Update thông tin Profile thành công!');
+						} else {
+							alert(res.error);
+						}
+					})
+				}
 			},
 			uploadAvatar(e) {
 				if (e.target.files && e.target.files[0]) {
