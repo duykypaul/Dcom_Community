@@ -1,8 +1,8 @@
 <template>
 	<div class="ass1-header__search">
-		<form action="#">
+		<form action="#" @submit.prevent="handleSearch">
 			<label>
-				<input class="form-control" name="search-text" placeholder="Nhập từ khóa ..." type="search">
+				<input v-model="querySearch" required class="form-control" name="search-text" placeholder="Nhập từ khóa ..." type="search">
 				<i class="icon-Search"></i>
 			</label>
 		</form>
@@ -12,6 +12,24 @@
 <script>
 	export default {
 		name: "header-search",
+		data() {
+			return {
+				querySearch: ''
+			}
+		},
+		methods: {
+			handleSearch() {
+				if(this.querySearch) {
+					this.$router.push({
+						name: 'search',
+						query: {
+							query: this.querySearch
+						}
+					})
+					this.querySearch = '';
+				}
+			}
+		}
 		
 	}
 </script>

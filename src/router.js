@@ -10,8 +10,10 @@ import ChangePassword from "./pages/ChangePassword";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
+import Search from "./pages/Search";
 
 import {ifAuthenticated, ifNotAuthenticated} from './plugins/authenticate';
+
 
 Vue.use(VueRouter)
 
@@ -61,6 +63,11 @@ const routes = [
 		name: 'login',
 		component: LoginPage,
 		beforeEnter: ifNotAuthenticated
+	},
+	{
+		path: '/search',
+		name: 'search',
+		component: Search
 	},
 	{
 		path: '*',
