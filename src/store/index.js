@@ -12,7 +12,7 @@ const store = new Vuex.Store({
 		isLoading: false
 	},
 	actions: {
-		setLoading({commit}, isLoading){
+		setLoading({commit}, isLoading) {
 			commit('SET_LOADING', isLoading);
 		}
 	},

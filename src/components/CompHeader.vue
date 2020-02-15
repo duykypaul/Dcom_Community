@@ -2,24 +2,24 @@
 	<header>
 		<div class="ass1-header">
 			<div class="container">
-				<router-link to="/" class="ass1-logo">
+				<router-link class="ass1-logo" to="/">
 					Dcom Community
 				</router-link>
 				<header-navigation/>
 				<header-search/>
-				<router-link to="/post-upload" class="ass1-header__btn-upload ass1-btn">
+				<router-link class="ass1-header__btn-upload ass1-btn" to="/post-upload">
 					<i class="icon-Upvote"></i> Upload
 				</router-link>
-				<router-link v-if="!getIsLogin" to="/login" class="ass1-header__btn-upload ass1-btn">
+				<router-link class="ass1-header__btn-upload ass1-btn" to="/login" v-if="!getIsLogin">
 					Login
 				</router-link>
-				<div v-else class="wrapper-user">
-					<a class="user-header">
+				<div class="wrapper-user" v-else>
+					<router-link :to="{name: 'user-page', params: {id: getCurrentUser.USERID}}" class="user-header">
 						<span class="avatar">
 							<img :src="getImageAvatar" alt="avatar">
 						</span>
 						<span class="email">{{getCurrentUser.email}}</span>
-					</a>
+					</router-link>
 					<div @click.prevent="handleLogOut" class="logout">Logout</div>
 				</div>
 			</div>
@@ -31,7 +31,7 @@
 	import $ from "jquery";
 	import HeaderNavigation from "./HeaderNavigation";
 	import HeaderSearch from "./HeaderSearch";
-	import {mapGetters, mapActions} from "vuex";
+	import {mapActions, mapGetters} from "vuex";
 	
 	export default {
 		name: "CompHeader",
@@ -49,13 +49,13 @@
 					return 'https://avatars2.githubusercontent.com/u/37139777?s=460&v=4';
 				}
 				return '/dist/images/avatar-02.png';
-			}
+			},
 		},
 		methods: {
 			...mapActions([
 				'actionLogout'
 			]),
-			handleLogOut(){
+			handleLogOut() {
 				this.actionLogout();
 			}
 		},

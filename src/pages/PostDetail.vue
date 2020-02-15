@@ -6,14 +6,14 @@
 				<!--section-->
 				<div class="ass1-section__list">
 					<div class="ass1-section" v-if="getPostDetail && getPostDetail.post">
-						<post-item  :post="getPostDetail.post" >
+						<post-item :post="getPostDetail.post">
 							<template id="post-detail-categories">
-								<li v-for="item in getPostDetail.categories" :key="item.tag_index">
-									<router-link :to="getLinkCategory(item)" >{{item.tag_value}}</router-link>
+								<li :key="item.tag_index" v-for="item in getPostDetail.categories">
+									<router-link :to="getLinkCategory(item)">{{item.tag_value}}</router-link>
 								</li>
 							</template>
 						</post-item>
-<!--						<post-feeling/>-->
+						<!--						<post-feeling/>-->
 					
 					
 					</div>
@@ -46,12 +46,12 @@
 			}
 		},
 		watch: {
-			$route(to, from){
+			$route(to, from) {
 				this.postId = to.params.id;
 				this.fetchPostById();
 			}
 		},
-		created(){
+		created() {
 			this.fetchPostById();
 		},
 		computed: {
@@ -63,7 +63,7 @@
 			...mapActions([
 				'getPostDetailByPostId'
 			]),
-			getLinkCategory(category){
+			getLinkCategory(category) {
 				return {
 					name: 'home',
 					query: {
@@ -72,9 +72,9 @@
 					}
 				}
 			},
-			fetchPostById(){
+			fetchPostById() {
 				this.getPostDetailByPostId(this.postId).then(res => {
-					if(!res.ok){
+					if (!res.ok) {
 						this.$router.push('/');
 					}
 				});

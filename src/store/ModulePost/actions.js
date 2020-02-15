@@ -20,7 +20,7 @@ export default {
 			}
 			commit('SET_LOADING', false);
 			if (result.data && result.data.status === 200) {
-				if(currPage === 1) {
+				if (currPage === 1) {
 					commit('SET_LIST_POSTS', result.data.posts);
 				} else {
 					commit('PUSH_LIST_POSTS', result.data.posts);

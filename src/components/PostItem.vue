@@ -2,7 +2,7 @@
 	<div class="ass1-section__item" v-if="post">
 		<div class="ass1-section">
 			<post-item-header :post="post"/>
-			<post-item-content :post="post" />
+			<post-item-content :post="post"/>
 			<post-item-footer :post="post"/>
 			<slot/>
 		</div>

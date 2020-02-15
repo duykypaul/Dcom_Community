@@ -1,6 +1,6 @@
 export default {
 	getIsLogin: state => {
-		if(state.ACCESS_TOKEN) return true;
+		if (state.ACCESS_TOKEN) return true;
 		return false;
 	},
 	getCurrentUser: state => {

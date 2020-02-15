@@ -1,14 +1,14 @@
 <template>
 	<div class="ass1-section__list">
 		<post-item
-				v-for="item in getListPosts"
-				:key="item.PID"
-				:post="item"
+			:key="item.PID"
+			:post="item"
+			v-for="item in getListPosts"
 		/>
 		<button
-				v-if="getListPosts && getListPosts.length"
-				class="load-more ass1-btn"
-				@click="handleLoadMore"
+			@click="handleLoadMore"
+			class="load-more ass1-btn"
+			v-if="getListPosts && getListPosts.length"
 		>
 			<span>Xem thêm</span>
 		</button>
@@ -20,6 +20,7 @@
 	import {mapActions, mapGetters} from 'vuex';
 	import PostItem from "./PostItem";
 	import {CURR_PAGE, PAZE_SIZE} from "../constants";
+	
 	export default {
 		name: "post-list",
 		components: {PostItem},
@@ -45,7 +46,7 @@
 			...mapActions([
 				'getListPostHasPaging'
 			]),
-			handleLoadMore(){
+			handleLoadMore() {
 				this.currPage++;
 				let obj = {
 					pagesize: this.pagesize,

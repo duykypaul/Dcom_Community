@@ -2,8 +2,8 @@
 	<div class="ass1-section__content">
 		<p>{{post.post_content}}</p>
 		<div class="ass1-section__image">
-			<router-link :to="getPostLink"  href="bai-viet-chi-tiet.html">
-				<img :src="post.url_image" @click="handlePostDetail(post.PID)" :alt="post.post_content">
+			<router-link :to="getPostLink" href="bai-viet-chi-tiet.html">
+				<img :alt="post.post_content" :src="post.url_image" @click="handlePostDetail(post.PID)">
 			</router-link>
 		</div>
 	</div>
@@ -18,7 +18,7 @@
 			post: {type: Object, default: null}
 		},
 		computed: {
-			getPostLink(){
+			getPostLink() {
 				return {name: 'post-detail', params: {id: this.post.PID}};
 			}
 		},
@@ -26,7 +26,7 @@
 			...mapActions([
 				'getPostDetailByPostId'
 			]),
-			handlePostDetail(PID){
+			handlePostDetail(PID) {
 				this.getPostDetailByPostId(PID);
 			}
 		}

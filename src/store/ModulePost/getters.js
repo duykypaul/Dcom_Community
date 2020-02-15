@@ -3,7 +3,7 @@ export default {
 		return state.listPosts;
 	},
 	getPostDetail(state, getters, rootState) {
-		if(state.postDetail) {
+		if (state.postDetail) {
 			let USERID = state.postDetail.post.USERID;
 			let user = rootState.user.users[USERID]
 			let data = {

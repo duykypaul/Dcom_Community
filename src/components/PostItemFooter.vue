@@ -1,7 +1,7 @@
 <template>
 	<div class="ass1-section__footer">
-		<a href="#" class="ass1-section__btn-comment ass1-btn-icon"><i
-				class="icon-Comment_Full"></i><span>{{getCommentCount}}</span></a>
+		<a class="ass1-section__btn-comment ass1-btn-icon" href="#"><i
+			class="icon-Comment_Full"></i><span>{{getCommentCount}}</span></a>
 	</div>
 </template>
 
@@ -12,7 +12,7 @@
 			post: {type: Object, default: null}
 		},
 		computed: {
-			getCommentCount(){
+			getCommentCount() {
 				return this.post.count !== null ? this.post.count : 0;
 			}
 		}

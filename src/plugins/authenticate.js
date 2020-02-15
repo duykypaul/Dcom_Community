@@ -2,7 +2,7 @@ import store from "../store";
 
 let ifNotAuthenticated = (to, from, next) => {
 	// đã đăng nhập  thì ko đc go to
-	if(store.getters.getIsLogin == false) {
+	if (store.getters.getIsLogin == false) {
 		next();
 	} else {
 		next({
@@ -15,7 +15,7 @@ let ifNotAuthenticated = (to, from, next) => {
 };
 let ifAuthenticated = (to, from, next) => {
 	// yêu cầu login trước khi đến đích
-	if(store.getters.getIsLogin) {
+	if (store.getters.getIsLogin) {
 		next();
 	} else {
 		console.log(store.getters.getIsLogin);

@@ -11,27 +11,26 @@
 	import CompHeader from "./components/CompHeader";
 	import CompFooter from "./components/CompFooter";
 	import AppLoading from "./components/AppLoading";
-	import {mapState, mapActions} from "vuex";
+	import {mapActions, mapState} from "vuex";
 	
 	export default {
 		name: 'app',
 		components: {AppLoading, CompFooter, CompHeader},
 		data() {
-			return {
-			}
+			return {}
 		},
 		computed: {
-			...mapState([ 'isLoading']),
-			isRenderHeader(){
+			...mapState(['isLoading']),
+			isRenderHeader() {
 				let arrRoutes = ['login', 'register'];
 				let RouteName = this.$route.name;
-				if(arrRoutes.indexOf(RouteName) !== -1) return false;
+				if (arrRoutes.indexOf(RouteName) !== -1) return false;
 				return true;
 			},
-			isRenderFooter(){
+			isRenderFooter() {
 				let arrRoutes = ['home', 'post-detail'];
 				let RouteName = this.$route.name;
-				if(arrRoutes.indexOf(RouteName) !== -1) return false;
+				if (arrRoutes.indexOf(RouteName) !== -1) return false;
 				return true;
 			}
 		},
@@ -40,7 +39,7 @@
 				'checkLogin'
 			])
 		},
-		created(){
+		created() {
 			this.checkLogin();
 		}
 	}

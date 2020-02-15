@@ -2,7 +2,7 @@
 	<div class="ass1-header__search">
 		<form action="#">
 			<label>
-				<input type="search" name="search-text" class="form-control" placeholder="Nhập từ khóa ...">
+				<input class="form-control" name="search-text" placeholder="Nhập từ khóa ..." type="search">
 				<i class="icon-Search"></i>
 			</label>
 		</form>

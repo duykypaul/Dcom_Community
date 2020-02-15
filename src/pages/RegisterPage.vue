@@ -2,19 +2,20 @@
 	<div class="ass1-login">
 		
 		<div class="ass1-login__logo">
-			<router-link to="/" class="ass1-logo">DCOM Community</router-link>
+			<router-link class="ass1-logo" to="/">DCOM Community</router-link>
 		</div>
 		<div class="ass1-login__content">
 			<p>Đăng ký một tài khoản</p>
 			<div class="ass1-login__form">
 				<form @submit.prevent="handleRegister">
-					<input v-model="fullName" type="text" class="form-control" placeholder="Tên hiển thị" required="">
-					<input v-model="email" type="email" class="form-control" placeholder="Email" required="">
-					<input v-model="password" type="password" class="form-control" placeholder="Mật khẩu" required="">
-					<input v-model="rePassword" type="password" class="form-control" placeholder="Nhập lại mật khẩu" required="">
+					<input class="form-control" placeholder="Tên hiển thị" required="" type="text" v-model="fullName">
+					<input class="form-control" placeholder="Email" required="" type="email" v-model="email">
+					<input class="form-control" placeholder="Mật khẩu" required="" type="password" v-model="password">
+					<input class="form-control" placeholder="Nhập lại mật khẩu" required="" type="password"
+					       v-model="rePassword">
 					<div class="ass1-login__send">
 						<router-link to="/login">Đăng nhập</router-link>
-						<button type="submit" class="ass1-btn">Đăng ký</button>
+						<button class="ass1-btn" type="submit">Đăng ký</button>
 					</div>
 				</form>
 			</div>
@@ -28,7 +29,7 @@
 	
 	export default {
 		name: "register-page",
-		data () {
+		data() {
 			return {
 				fullName: '',
 				email: '',
@@ -40,15 +41,15 @@
 			...mapActions([
 				'actionRegister'
 			]),
-			handleRegister(){
+			handleRegister() {
 				let data = {
-					fullname : this.fullName,
+					fullname: this.fullName,
 					email: this.email,
 					password: this.password,
 					repassword: this.rePassword
 				};
 				this.actionRegister(data).then(res => {
-					if(!res.ok) {
+					if (!res.ok) {
 						alert(res.error);
 					} else {
 						this.$router.push('/');

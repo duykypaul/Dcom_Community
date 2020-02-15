@@ -8,9 +8,9 @@
 		</div>
 		<div v-else-if="getIsLogin && getListPostOfCurrentUser && getListPostOfCurrentUser.length">
 			<post-item
-					v-for="item in getListPostOfCurrentUser"
-					:key="item.PID"
-					:post="item"
+				:key="item.PID"
+				:post="item"
+				v-for="item in getListPostOfCurrentUser"
 			/>
 		</div>
 	</aside>

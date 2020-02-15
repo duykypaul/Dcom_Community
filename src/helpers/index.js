@@ -15,22 +15,22 @@ let removeVietnameseFromString = (str) => {
 	str = str.replace(/Đ/g, "D");
 	str = str.toLowerCase();
 	str = str
-		.replace(/[&]/g, "-and-")
-		.replace(/[^a-zA-Z0-9._-]/g, "-")
-		.replace(/[-]+/g, "-")
-		.replace(/-$/, "");
+	.replace(/[&]/g, "-and-")
+	.replace(/[^a-zA-Z0-9._-]/g, "-")
+	.replace(/[-]+/g, "-")
+	.replace(/-$/, "");
 	return str;
 }
 let parseJwt = (token) => {
-	try{
+	try {
 		let base64Url = token.split('.')[1];
 		let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-		let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+		let jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
 			return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
 		}).join(''));
 		
 		return JSON.parse(jsonPayload);
-	} catch(error) {
+	} catch (error) {
 		return null;
 	}
 };

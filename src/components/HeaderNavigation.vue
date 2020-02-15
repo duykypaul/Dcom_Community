@@ -6,8 +6,8 @@
 				<div class="ass1-header__nav" style="display: none;">
 					<div class="container">
 						<ul>
-							<li v-for="item in categories" :key="item.id">
-								<router-link :to="getLinkCategory(item)" >{{item.text}}</router-link>
+							<li :key="item.id" v-for="item in categories">
+								<router-link :to="getLinkCategory(item)">{{item.text}}</router-link>
 							</li>
 						</ul>
 					</div>
@@ -19,12 +19,13 @@
 </template>
 
 <script>
-	import { mapState } from 'vuex';
+	import {mapState} from 'vuex';
 	import {removeVietnameseFromString} from "../helpers";
+	
 	export default {
 		name: "header-navigation",
 		methods: {
-			getLinkCategory(category){
+			getLinkCategory(category) {
 				return {
 					name: 'home',
 					query: {
@@ -43,12 +44,13 @@
 </script>
 
 <style scoped>
-	.ass1-header__nav > .container ul{
+	.ass1-header__nav > .container ul {
 		Width: 100%;
 		flex-direction: row;
 		flex-wrap: wrap;
 	}
-	.ass1-header__nav > .container ul li{
+	
+	.ass1-header__nav > .container ul li {
 		width: 25%;
 	}
 </style>

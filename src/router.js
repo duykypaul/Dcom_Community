@@ -11,7 +11,7 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
 
-import {ifNotAuthenticated, ifAuthenticated} from './plugins/authenticate';
+import {ifAuthenticated, ifNotAuthenticated} from './plugins/authenticate';
 
 Vue.use(VueRouter)
 
