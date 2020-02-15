@@ -31,9 +31,9 @@
 			}
 		},
 		watch: {
-			$route(to, from) {
+			'$route' (to, from) {
 				this.userId = to.params.id;
-				console.log("checkCurrentUser, watch ");
+				console.log("checkCurrentUser, watch");
 				this.checkCurrentUser();
 			}
 		},
@@ -59,20 +59,29 @@
 				}
 			},
 			handleChangePassword(){
-				let data = {
-					oldPassword: this.oldPassword,
-					newPassword: this.newPassword,
-					reNewPassword: this.reNewPassword
-				};
-				
-				this.changePassword(data).then(res => {
-					if(!res.ok) {
-						console.log(res);
-						alert(res.error);
+				let { oldPassword ,newPassword, reNewPassword } = this;
+				if(oldPassword && newPassword && reNewPassword) {
+					if(oldPassword == newPassword) {
+						alert('Mật khẩu cũ không được trùng với mật khẩu mới');
+					} else if (newPassword != reNewPassword) {
+						alert('Mật khẩu nhập lại không khớp');
 					} else {
-						this.$router.push('/');
+						let data = {
+							oldPassword,
+							newPassword,
+							reNewPassword
+						}
+						this.changePassword(data).then(res => {
+							if(res.ok) {
+								alert(res.message);
+								this.$router.push('/');
+							} else {
+								alert(res.error);
+							}
+						})
 					}
-				})
+				}
+				
 			}
 		}
 	}

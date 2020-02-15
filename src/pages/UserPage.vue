@@ -37,7 +37,7 @@
 			}
 		},
 		watch: {
-			$route(to, from) {
+			'$route' (to, from) {
 				this.userId = to.params.id;
 				console.log("fetchAllData watch");
 				this.fetchAllData();
@@ -56,8 +56,6 @@
 			]),
 			async fetchAllData() {
 				console.log("fetchAllData");
-				console.log("fetchAllData");
-				
 				this.setLoading(true);
 				let promiseUser = this.getUserById(this.userId);
 				let promiseUserPosts = this.getListPostByUserId(this.userId);
