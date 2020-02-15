@@ -46,7 +46,7 @@
 			]),
 			getImageAvatar() {
 				if (this.getCurrentUser.profilepicture) {
-					return 'https://avatars2.githubusercontent.com/u/37139777?s=460&v=4';
+					return this.getCurrentUser.profilepicture;
 				}
 				return '/dist/images/avatar-02.png';
 			},

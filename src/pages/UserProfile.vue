@@ -57,8 +57,9 @@
 			}
 		},
 		watch: {
-			$route(to, from) {
+			$route (to, from) {
 				this.userId = to.params.id;
+				console.log("checkCurrentUser", "watch");
 				this.checkCurrentUser();
 			}
 		},
@@ -79,10 +80,15 @@
 				'updateProfile'
 			]),
 			checkCurrentUser() {
+				console.log("this.getCurrentUser.USERID", this.getCurrentUser.USERID);
+				console.log("this.userId", this.userId);
+				
 				if (this.getCurrentUser.USERID && this.userId) {
 					if (this.userId != this.getCurrentUser.USERID) {
 						this.$router.push({name: 'home', query: {direction: this.$route.name}});
 					}
+				} else {
+					console.log("chuwa load kip");
 				}
 			},
 			handleEditProfile() {
@@ -128,6 +134,7 @@
 			}
 		},
 		created() {
+			console.log("checkCurrentUser", "create");
 			this.checkCurrentUser();
 		}
 	}

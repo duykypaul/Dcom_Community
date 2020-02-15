@@ -155,7 +155,7 @@ export default {
 			}
 		}
 	},
-	async updateProfile({ commit }, { fullname = '', description = '', gender = '', objFile = null }) {
+	async updateProfile({commit}, {fullname = '', description = '', gender = '', objFile = null}) {
 		commit('SET_LOADING', true);
 		try {
 			let bodyFormData = new FormData();
@@ -165,7 +165,7 @@ export default {
 			bodyFormData.append('description', description);
 			
 			// For avatar
-			if(objFile) {
+			if (objFile) {
 				bodyFormData.append('avatar', objFile);
 			}
 			
@@ -178,7 +178,7 @@ export default {
 			
 			let result = await axiosInstance.post('/member/update.php', bodyFormData, config);
 			commit('SET_LOADING', false);
-			if(result.data.status === 200) {
+			if (result.data.status === 200) {
 				commit('SET_CURRENT_USER', result.data.user);
 				return {
 					ok: true,
@@ -191,11 +191,46 @@ export default {
 				}
 			}
 			
-		} catch(error) {
+		} catch (error) {
 			commit('SET_LOADING', false);
 			return {
 				ok: false,
 				error: error.message
+			}
+		}
+	},
+	async changePassword({commit}, {oldPassword = '', newPassword = '', reNewPassword = ''}) {
+		try {
+			let data = {
+				oldPassword,
+				newPassword,
+				reNewPassword
+			};
+			let config = {
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': "Bearer " + localStorage.getItem("ACCESS_TOKEN")
+				}
+			};
+			console.log("change_password: ");
+			let change_password = await axiosInstance.post("/member/password.php", data, config);
+			console.log("change_password: ", change_password);
+			if (change_password.data && change_password.data.status === 200) {
+				return {
+					ok: true,
+					message: change_password.data.message
+				}
+			} else {
+				return {
+					ok: false,
+					error: change_password.data.error
+				}
+			}
+		} catch (e) {
+			console.log("catch");
+			return {
+				ok: false,
+				error: e.error
 			}
 		}
 	}

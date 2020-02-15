@@ -64,7 +64,9 @@
 				return '/dist/images/cat-1634369_1920.jpg';
 			},
 			isCurrentUser() {
-				return this.$route.params.id == this.getCurrentUser.USERID;
+				if(this.getCurrentUser) {
+					return this.$route.params.id == this.getCurrentUser.USERID;
+				}
 			}
 		}
 	}
