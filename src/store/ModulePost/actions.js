@@ -80,5 +80,45 @@ export default {
 				error: error.message
 			}
 		}
+	},
+	async createNewPost({commit}, {obj_image = null, post_content = '', url_image = '', category= []}){
+		commit('SET_LOADING', true);
+		try{
+			let bodyFormData = new FormData();
+			
+			bodyFormData.append('url_image', url_image);
+			bodyFormData.append('post_content', post_content);
+			bodyFormData.append('category', category);
+			
+			// For image
+			if (obj_image) {
+				bodyFormData.append('obj_image', obj_image);
+			}
+			let config = {
+				headers: {
+					accept: 'multipart/form-data',
+					Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN')
+				}
+			};
+			let result = await axiosInstance.post('/post/addNew.php', bodyFormData, config);
+			commit('SET_LOADING', false);
+			if(result.data.status === 200) {
+				return {
+					ok: true,
+					data: result.data.data
+				}
+			} else {
+				return {
+					ok: false,
+					error: result.data.error
+				}
+			}
+		} catch(error) {
+		commit('SET_LOADING', false);
+		return {
+			ok: false,
+			error: error.message
+		}
+	}
 	}
 }

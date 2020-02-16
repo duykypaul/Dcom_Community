@@ -31,6 +31,9 @@
 			}
 		},
 		watch: {
+			getCurrentUser(){
+				this.checkCurrentUser();
+			},
 			'$route' (to, from) {
 				this.userId = to.params.id;
 				console.log("checkCurrentUser, watch");

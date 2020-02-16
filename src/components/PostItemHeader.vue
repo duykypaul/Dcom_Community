@@ -31,7 +31,6 @@
 			},
 			formatTimeAdded() {
 				moment.locale('vi');
-				console.log(moment);
 				return moment(this.post.time_added).fromNow();
 			},
 			getImageAvatar() {

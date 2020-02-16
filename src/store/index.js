@@ -7,7 +7,8 @@ import post from './ModulePost';
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-	strict: process.env.NODE_ENV !== 'production',
+	// strict: process.env.NODE_ENV !== 'production',
+	strict: 'production',
 	state: {
 		isLoading: false
 	},
