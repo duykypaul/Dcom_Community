@@ -120,5 +120,26 @@ export default {
 			error: error.message
 		}
 	}
-	}
+	},
+	async getListCommentByPostid({ commit }, postid) {
+		try {
+			let result = await axiosInstance.get('/comment/comments.php?postid=' + postid);
+			if(result.data.status === 200) {
+				return {
+					ok: true,
+					comments: result.data.comments
+				}
+			} else {
+				return {
+					ok: false,
+					error: result.data.error
+				}
+			}
+		} catch(error) {
+			return {
+				ok: false,
+				error: error.message
+			}
+		}
+	},
 }
